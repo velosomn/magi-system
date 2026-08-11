@@ -32,44 +32,44 @@
          GASPAR na base. Cada conector vai de um vértice do núcleo até a aresta
          superior do nó — as coordenadas precisam coincidir de fato, ou as linhas
          viram riscos soltos. -->
-    <svg id="magi" viewBox="0 0 960 570" role="img" aria-labelledby="magi-title">
+    <svg id="magi" viewBox="0 0 1120 600" role="img" aria-labelledby="magi-title">
       <title id="magi-title">Estado dos três componentes e veredito central</title>
 
-      <!-- conexões: núcleo -> nó -->
+      <!-- conexões: vértice do núcleo -> aresta superior do nó -->
       <g class="links" id="links">
-        <line class="link" data-link="MELCHIOR"  x1="480" y1="170" x2="480" y2="210"/>
-        <line class="link" data-link="BALTHASAR" x1="380" y1="352" x2="340" y2="400"/>
-        <line class="link" data-link="GASPAR"    x1="580" y1="352" x2="620" y2="400"/>
+        <line class="link" data-link="MELCHIOR"  x1="560" y1="170" x2="560" y2="210"/>
+        <line class="link" data-link="BALTHASAR" x1="460" y1="352" x2="380" y2="430"/>
+        <line class="link" data-link="GASPAR"    x1="660" y1="352" x2="740" y2="430"/>
       </g>
 
       <!-- nós -->
       <g class="node" id="node-MELCHIOR" data-agent="MELCHIOR">
-        <polygon class="node-shape" points="280,30 680,30 630,170 330,170"/>
-        <text class="node-name"  x="480" y="88"  text-anchor="middle">MELCHIOR</text>
-        <text class="node-idx"   x="480" y="112" text-anchor="middle">· 1 ·  CIENTÍFICO</text>
-        <text class="node-state" x="480" y="145" text-anchor="middle">EM ESPERA</text>
+        <polygon class="node-shape" points="360,30 760,30 710,170 410,170"/>
+        <text class="node-name"  x="560" y="88"  text-anchor="middle">MELCHIOR</text>
+        <text class="node-idx"   x="560" y="112" text-anchor="middle">· 1 ·  CIENTÍFICO</text>
+        <text class="node-state" x="560" y="145" text-anchor="middle">EM ESPERA</text>
       </g>
 
       <g class="node" id="node-BALTHASAR" data-agent="BALTHASAR">
-        <polygon class="node-shape" points="40,400 440,400 390,540 90,540"/>
-        <text class="node-name"  x="240" y="458" text-anchor="middle">BALTHASAR</text>
-        <text class="node-idx"   x="240" y="482" text-anchor="middle">· 2 ·  ÉTICO</text>
-        <text class="node-state" x="240" y="515" text-anchor="middle">EM ESPERA</text>
+        <polygon class="node-shape" points="30,430 430,430 380,570 80,570"/>
+        <text class="node-name"  x="230" y="488" text-anchor="middle">BALTHASAR</text>
+        <text class="node-idx"   x="230" y="512" text-anchor="middle">· 2 ·  ÉTICO</text>
+        <text class="node-state" x="230" y="545" text-anchor="middle">EM ESPERA</text>
       </g>
 
       <g class="node" id="node-GASPAR" data-agent="GASPAR">
-        <polygon class="node-shape" points="520,400 920,400 870,540 570,540"/>
-        <text class="node-name"  x="720" y="458" text-anchor="middle">GASPAR</text>
-        <text class="node-idx"   x="720" y="482" text-anchor="middle">· 3 ·  PRÁTICO</text>
-        <text class="node-state" x="720" y="515" text-anchor="middle">EM ESPERA</text>
+        <polygon class="node-shape" points="690,430 1090,430 1040,570 740,570"/>
+        <text class="node-name"  x="890" y="488" text-anchor="middle">GASPAR</text>
+        <text class="node-idx"   x="890" y="512" text-anchor="middle">· 3 ·  PRÁTICO</text>
+        <text class="node-state" x="890" y="545" text-anchor="middle">EM ESPERA</text>
       </g>
 
       <!-- núcleo -->
       <g id="core" class="core">
         <polygon class="core-shape"
-          points="480,210 580,258 580,352 480,400 380,352 380,258"/>
-        <text id="core-verdict" class="core-verdict" x="480" y="302" text-anchor="middle">MAGI</text>
-        <text id="core-sub" class="core-sub" x="480" y="334" text-anchor="middle">aguardando consulta</text>
+          points="560,210 660,258 660,352 560,400 460,352 460,258"/>
+        <text id="core-verdict" class="core-verdict" x="560" y="302" text-anchor="middle">MAGI</text>
+        <text id="core-sub" class="core-sub" x="560" y="334" text-anchor="middle">aguardando consulta</text>
       </g>
     </svg>
 
