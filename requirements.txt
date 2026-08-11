@@ -1,0 +1,31 @@
+# MAGI System - Dependencies
+
+# LLM APIs & Clients
+anthropic>=0.34.0
+google-genai>=2.0.0
+groq>=0.4.0
+
+# CLI & Formatting
+rich>=13.9.0
+typer>=0.12.0
+
+# Web Server
+fastapi>=0.109.0
+uvicorn>=0.27.0
+python-multipart>=0.0.6
+
+# Environment & Configuration
+python-dotenv>=1.0.0
+
+# Async & Concurrency
+aiohttp>=3.14.0
+
+# Optional: Data Processing
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Development
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
+black>=24.10.0
+ruff>=0.8.0

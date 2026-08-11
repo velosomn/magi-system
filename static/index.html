@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAGI System — Deliberação</title>
+<!-- Caminhos absolutos: a página é servida em "/", mas os assets ficam
+     montados em "/static/". Um href relativo resolveria para "/style.css" e daria 404. -->
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="mark">◤</span>
+    <span class="wordmark">MAGI</span>
+    <span class="topbar-sub">Sistema Integrado de Deliberação</span>
+  </div>
+  <div class="topbar-right">
+    <span id="link-status" class="readout">ENLACE ——</span>
+    <span id="clock" class="readout"></span>
+  </div>
+</header>
+
+<main class="stage">
+
+  <!-- ============ DISPLAY MAGI ============ -->
+  <section class="display" aria-label="Painel de deliberação MAGI">
+    <svg id="magi" viewBox="0 0 960 500" role="img" aria-labelledby="magi-title">
+      <title id="magi-title">Estado dos três componentes e veredito central</title>
+
+      <!-- conexões -->
+      <g class="links" id="links">
+        <line class="link" data-link="MELCHIOR"  x1="480" y1="170" x2="480" y2="196"/>
+        <line class="link" data-link="BALTHASAR" x1="440" y1="392" x2="392" y2="330"/>
+        <line class="link" data-link="GASPAR"    x1="520" y1="392" x2="568" y2="330"/>
+      </g>
+
+      <!-- nós -->
+      <g class="node" id="node-MELCHIOR" data-agent="MELCHIOR">
+        <polygon class="node-shape" points="280,30 680,30 630,170 330,170"/>
+        <text class="node-name"  x="480" y="88"  text-anchor="middle">MELCHIOR</text>
+        <text class="node-idx"   x="480" y="112" text-anchor="middle">· 1 ·  CIENTÍFICO</text>
+        <text class="node-state" x="480" y="145" text-anchor="middle">EM ESPERA</text>
+      </g>
+
+      <g class="node" id="node-BALTHASAR" data-agent="BALTHASAR">
+        <polygon class="node-shape" points="40,330 440,330 390,470 90,470"/>
+        <text class="node-name"  x="240" y="388" text-anchor="middle">BALTHASAR</text>
+        <text class="node-idx"   x="240" y="412" text-anchor="middle">· 2 ·  ÉTICO</text>
+        <text class="node-state" x="240" y="445" text-anchor="middle">EM ESPERA</text>
+      </g>
+
+      <g class="node" id="node-GASPAR" data-agent="GASPAR">
+        <polygon class="node-shape" points="520,330 920,330 870,470 570,470"/>
+        <text class="node-name"  x="720" y="388" text-anchor="middle">GASPAR</text>
+        <text class="node-idx"   x="720" y="412" text-anchor="middle">· 3 ·  PRÁTICO</text>
+        <text class="node-state" x="720" y="445" text-anchor="middle">EM ESPERA</text>
+      </g>
+
+      <!-- núcleo -->
+      <g id="core" class="core">
+        <polygon class="core-shape"
+          points="480,196 585,251 585,335 480,390 375,335 375,251"/>
+        <text id="core-verdict" class="core-verdict" x="480" y="290" text-anchor="middle">MAGI</text>
+        <text id="core-sub" class="core-sub" x="480" y="322" text-anchor="middle">aguardando consulta</text>
+      </g>
+    </svg>
+
+    <div id="veto-banner" class="veto-banner" hidden>
+      <span class="veto-tag">VETO ÉTICO</span>
+      <span class="veto-text">BALTHASAR bloqueou a aprovação. A objeção prevalece sobre a maioria.</span>
+    </div>
+
+    <div id="degraded-banner" class="degraded-banner" hidden>
+      <span class="deg-tag">SISTEMA DEGRADADO</span>
+      <span class="deg-text" id="degraded-text"></span>
+    </div>
+  </section>
+
+  <!-- ============ CONSULTA ============ -->
+  <section class="console" aria-label="Entrada de consulta">
+    <label class="console-label" for="query">CONSULTA</label>
+    <div class="console-row">
+      <input id="query" type="text" autocomplete="off" spellcheck="false"
+             placeholder="Formule a questão a ser deliberada…">
+      <button id="submit" type="button">DELIBERAR</button>
+    </div>
+    <p id="progress" class="progress" hidden></p>
+  </section>
+
+  <!-- ============ RESULTADO ============ -->
+  <section id="result" class="result" hidden>
+
+    <div class="tally" id="tally">
+      <div class="tally-item">
+        <span class="tally-label">Concordância</span>
+        <strong class="tally-value" id="t-consensus">—</strong>
+      </div>
+      <div class="tally-item">
+        <span class="tally-label">Componentes ativos</span>
+        <strong class="tally-value" id="t-live">—</strong>
+      </div>
+      <div class="tally-item tally-wide">
+        <span class="tally-label">Fundamento</span>
+        <strong class="tally-value tally-reason" id="t-reason">—</strong>
+      </div>
+    </div>
+
+    <article class="synthesis">
+      <h2>Recomendação do MAGI</h2>
+      <div id="synthesis" class="synthesis-body"></div>
+    </article>
+
+    <div class="panels" id="panels">
+      <article class="panel" data-agent="MELCHIOR">
+        <header class="panel-head">
+          <h3>MELCHIOR</h3>
+          <span class="panel-stance" data-stance-for="MELCHIOR">—</span>
+        </header>
+        <div class="panel-body" data-body-for="MELCHIOR"></div>
+        <footer class="panel-foot">
+          <span class="panel-model">Claude Opus 5 · busca web</span>
+          <details id="sources-wrap" class="sources" hidden>
+            <summary><span id="sources-count">0</span> fontes consultadas</summary>
+            <ul id="sources-list"></ul>
+          </details>
+        </footer>
+      </article>
+
+      <article class="panel" data-agent="BALTHASAR">
+        <header class="panel-head">
+          <h3>BALTHASAR</h3>
+          <span class="panel-stance" data-stance-for="BALTHASAR">—</span>
+        </header>
+        <div class="panel-body" data-body-for="BALTHASAR"></div>
+        <footer class="panel-foot">
+          <span class="panel-model">Gemini 3.5 Flash · poder de veto</span>
+        </footer>
+      </article>
+
+      <article class="panel" data-agent="GASPAR">
+        <header class="panel-head">
+          <h3>GASPAR</h3>
+          <span class="panel-stance" data-stance-for="GASPAR">—</span>
+        </header>
+        <div class="panel-body" data-body-for="GASPAR"></div>
+        <footer class="panel-foot">
+          <span class="panel-model">Llama 3.3 70B · Groq</span>
+        </footer>
+      </article>
+    </div>
+  </section>
+
+  <p id="error" class="error" hidden></p>
+</main>
+
+<footer class="bottombar">
+  <span>MAGI v2.1</span>
+  <span>3 componentes · juiz independente · veto ético</span>
+  <span>Melchior · Balthasar · Gaspar</span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
