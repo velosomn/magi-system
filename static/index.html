@@ -28,14 +28,18 @@
 
   <!-- ============ DISPLAY MAGI ============ -->
   <section class="display" aria-label="Painel de deliberação MAGI">
-    <svg id="magi" viewBox="0 0 960 500" role="img" aria-labelledby="magi-title">
+    <!-- Geometria: MELCHIOR no topo, núcleo hexagonal ao centro, BALTHASAR e
+         GASPAR na base. Cada conector vai de um vértice do núcleo até a aresta
+         superior do nó — as coordenadas precisam coincidir de fato, ou as linhas
+         viram riscos soltos. -->
+    <svg id="magi" viewBox="0 0 960 570" role="img" aria-labelledby="magi-title">
       <title id="magi-title">Estado dos três componentes e veredito central</title>
 
-      <!-- conexões -->
+      <!-- conexões: núcleo -> nó -->
       <g class="links" id="links">
-        <line class="link" data-link="MELCHIOR"  x1="480" y1="170" x2="480" y2="196"/>
-        <line class="link" data-link="BALTHASAR" x1="440" y1="392" x2="392" y2="330"/>
-        <line class="link" data-link="GASPAR"    x1="520" y1="392" x2="568" y2="330"/>
+        <line class="link" data-link="MELCHIOR"  x1="480" y1="170" x2="480" y2="210"/>
+        <line class="link" data-link="BALTHASAR" x1="380" y1="352" x2="340" y2="400"/>
+        <line class="link" data-link="GASPAR"    x1="580" y1="352" x2="620" y2="400"/>
       </g>
 
       <!-- nós -->
@@ -47,25 +51,25 @@
       </g>
 
       <g class="node" id="node-BALTHASAR" data-agent="BALTHASAR">
-        <polygon class="node-shape" points="40,330 440,330 390,470 90,470"/>
-        <text class="node-name"  x="240" y="388" text-anchor="middle">BALTHASAR</text>
-        <text class="node-idx"   x="240" y="412" text-anchor="middle">· 2 ·  ÉTICO</text>
-        <text class="node-state" x="240" y="445" text-anchor="middle">EM ESPERA</text>
+        <polygon class="node-shape" points="40,400 440,400 390,540 90,540"/>
+        <text class="node-name"  x="240" y="458" text-anchor="middle">BALTHASAR</text>
+        <text class="node-idx"   x="240" y="482" text-anchor="middle">· 2 ·  ÉTICO</text>
+        <text class="node-state" x="240" y="515" text-anchor="middle">EM ESPERA</text>
       </g>
 
       <g class="node" id="node-GASPAR" data-agent="GASPAR">
-        <polygon class="node-shape" points="520,330 920,330 870,470 570,470"/>
-        <text class="node-name"  x="720" y="388" text-anchor="middle">GASPAR</text>
-        <text class="node-idx"   x="720" y="412" text-anchor="middle">· 3 ·  PRÁTICO</text>
-        <text class="node-state" x="720" y="445" text-anchor="middle">EM ESPERA</text>
+        <polygon class="node-shape" points="520,400 920,400 870,540 570,540"/>
+        <text class="node-name"  x="720" y="458" text-anchor="middle">GASPAR</text>
+        <text class="node-idx"   x="720" y="482" text-anchor="middle">· 3 ·  PRÁTICO</text>
+        <text class="node-state" x="720" y="515" text-anchor="middle">EM ESPERA</text>
       </g>
 
       <!-- núcleo -->
       <g id="core" class="core">
         <polygon class="core-shape"
-          points="480,196 585,251 585,335 480,390 375,335 375,251"/>
-        <text id="core-verdict" class="core-verdict" x="480" y="290" text-anchor="middle">MAGI</text>
-        <text id="core-sub" class="core-sub" x="480" y="322" text-anchor="middle">aguardando consulta</text>
+          points="480,210 580,258 580,352 480,400 380,352 380,258"/>
+        <text id="core-verdict" class="core-verdict" x="480" y="302" text-anchor="middle">MAGI</text>
+        <text id="core-sub" class="core-sub" x="480" y="334" text-anchor="middle">aguardando consulta</text>
       </g>
     </svg>
 
